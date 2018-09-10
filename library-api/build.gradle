@@ -1,0 +1,94 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'http://dl.bintray.com/content/aalmiray/kordamp' }
+    }
+    dependencies {
+        classpath 'org.kordamp:markdown-gradle-plugin:1.1.0'
+        classpath "mysql:mysql-connector-java:${mysqlConnectorVersion}"
+        classpath("org.liquibase:liquibase-core:${liquibaseVersion}")
+        classpath("org.liquibase:liquibase-gradle-plugin:${liquibasePluginVersion}") {
+            exclude(module: 'liquibase-core')
+        }
+        classpath("org.yaml:snakeyaml:${snakeyamlVersion}")
+    }
+}
+
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+}
+
+apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'org.kordamp.markdown.convert'
+apply plugin: 'org.liquibase.gradle'
+
+dependencies {
+
+    compile project(':library-service')
+    compile project(':library-dto')
+
+    compile('org.springframework.data:spring-data-commons')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security:spring-security-jwt')
+    compile "org.liquibase:liquibase-core:${liquibaseVersion}"
+    compile "org.liquibase:liquibase-gradle-plugin:${liquibasePluginVersion}"
+
+
+    runtime('mysql:mysql-connector-java')
+    runtime('com.h2database:h2')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+}
+
+bootRepackage {
+    enabled = true
+}
+
+asciidoctor {
+    dependsOn test
+
+    backends 'html5'
+    sourceDir 'src/main/asciidoc/index'
+    attributes 'snippets': file('build/snippets'),
+            'version': "${project.version}"
+}
+
+htmlToMarkdown {
+    dependsOn asciidoctor
+
+    sourceDir file("${project.buildDir}/asciidoc/html5")
+    outputDir file("${project.rootDir}/docs/library")
+    configuration tables: true
+}
+
+task apidocs {
+    dependsOn htmlToMarkdown
+}
+
+if ("$addApiDocs".toBoolean()) {
+    jar {
+        dependsOn asciidoctor
+        from("${project.buildDir}/asciidoc/html5/index.html") {
+            into 'static/docs'
+        }
+    }
+}
+
+liquibase {
+    activities {
+        main {
+            File propsFile = project.file('src/main/resources/database.properties')
+            Properties properties = new Properties()
+            properties.load(new FileInputStream(propsFile))
+
+            changeLogFile properties['database.changes.main']
+            url properties['database.url']
+            username properties['database.username']
+            password properties['database.password']
+        }
+    }
+}
