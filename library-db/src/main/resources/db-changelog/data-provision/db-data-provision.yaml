@@ -1,0 +1,99 @@
+databaseChangeLog:
+  - context: local
+  - changeSet:
+        id: 01_load_authors_data
+        author: oleksii.hovderchak@nure.ua
+        preConditions:
+          onFail: WARN
+          dbms:
+            type: mysql
+        runOnChange: true
+        changes:
+          - loadUpdateData:
+              file: data/authors.csv
+              tableName: authors
+              primaryKey: pk_id
+          - loadUpdateData:
+              file: data/authors.csv
+              tableName: authors
+              quotchar: '"'
+              primaryKey: pk_id
+  - changeSet:
+        id: 02_load_category_data
+        author: oleksii.hovderchak@nure.ua
+        preConditions:
+          onFail: WARN
+          dbms:
+            type: mysql
+        runOnChange: true
+        changes:
+          - loadUpdateData:
+              file: data/catigories.csv
+              tableName: categories
+              primaryKey: pk_id
+  - changeSet:
+        id: 03_load_books_data
+        author: oleksii.hovderchak@nure.ua
+        preConditions:
+          onFail: WARN
+          dbms:
+            type: mysql
+        runOnChange: true
+        changes:
+          - loadUpdateData:
+              file: data/books.csv
+              tableName: books
+              primaryKey: pk_id
+  - changeSet:
+        id: 04_load_authors_have_books_data
+        author: oleksii.hovderchak@nure.ua
+        preConditions:
+          onFail: WARN
+          dbms:
+            type: mysql
+        runOnChange: true
+        changes:
+          - loadUpdateData:
+              file: data/authors_have_books.csv
+              tableName: authors_have_books
+              primaryKey: pk_id
+  - changeSet:
+        id: 05_load_users_data
+        author: oleksii.hovderchak@nure.ua
+        preConditions:
+          onFail: WARN
+          dbms:
+            type: mysql
+        runOnChange: true
+        changes:
+          - loadUpdateData:
+              file: data/users.csv
+              tableName: users
+              primaryKey: false
+#This data should be uncommented only if you want to fill database with fake orders.
+#  - changeSet:
+#        id: 06_load_orders_data
+#        author: oleksii.hovderchak@nure.ua
+#        preConditions:
+#          onFail: WARN
+#          dbms:
+#            type: mysql
+#        runOnChange: true
+#        changes:
+#          - loadUpdateData:
+#              file: data/orders.csv
+#              tableName: orders
+#              primaryKey: pk_id
+#  - changeSet:
+#        id: 07_load_orders_have_books_data
+#        author: oleksii.hovderchak@nure.ua
+#        preConditions:
+#          onFail: WARN
+#          dbms:
+#            type: mysql
+#        runOnChange: true
+#        changes:
+#          - loadUpdateData:
+#              file: data/orders_have_books.csv
+#              tableName: orders_have_books
+#              primaryKey: pk_id

@@ -16,6 +16,7 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
+    group = 'ua.nure.library'
     version = "${projectVersion}"
     sourceCompatibility = 1.8
 

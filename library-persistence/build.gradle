@@ -1,16 +1,9 @@
-plugins {
-    id 'java'
-}
-
-group 'library'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':library-domain')
+    compile project(':library-db')
+
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtime('com.h2database:h2')
+    testCompile "org.liquibase:liquibase-core:${liquibaseVersion}"
+    testCompile "org.liquibase:liquibase-gradle-plugin:${liquibasePluginVersion}"
 }

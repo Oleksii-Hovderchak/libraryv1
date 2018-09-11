@@ -18,7 +18,6 @@ plugins {
     id 'org.asciidoctor.convert' version '1.5.3'
 }
 
-apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'org.kordamp.markdown.convert'
 apply plugin: 'org.liquibase.gradle'
 
