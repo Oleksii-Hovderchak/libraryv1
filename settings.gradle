@@ -1,6 +1,5 @@
 rootProject.name = 'library'
 include 'library-api'
-include 'library-db'
 include 'library-domain'
 include 'library-dto'
 include 'library-persistence'

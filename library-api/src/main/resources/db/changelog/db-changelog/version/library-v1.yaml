@@ -1,0 +1,307 @@
+databaseChangeLog:
+- changeSet:
+    id: 11_09_2018_1_add_authors_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      onFail: WARN
+      not:
+        tableExists:
+          tableName: authors
+    changes:
+    - tagDatabase:
+        tag: v1.0
+    - createTable:
+        tableName: authors
+        columns:
+        - column:
+            name: id
+            type: CHAR(36)
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: first_name
+            type: VARCHAR(20)
+            constraints:
+              nullable: false
+        - column:
+            name: last_name
+            type: VARCHAR(20)
+            constraints:
+              nullable: false
+    - addUniqueConstraint:
+        tableName: authors
+        columnNames: first_name, last_name
+        constraintName: UC_authors_first_name_last_name
+    rollback:
+    - dropTable:
+        tableName: authors
+
+- changeSet:
+    id: 11_09_2018_2_add_categories_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      onFail: WARN
+      not:
+        tableExists:
+          tableName: categories
+    changes:
+    - tagDatabase:
+        tag: v1.1
+    - createTable:
+        tableName: categories
+        columns:
+        - column:
+            name: id
+            type: CHAR(36)
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: name
+            type: VARCHAR(20)
+            constraints:
+              nullable: false
+              unique: true
+              uniqueConstraintName: UC_categories_name
+    rollback:
+    - dropTable:
+        tableName: categories
+
+- changeSet:
+    id: 11_09_2018_3_add_books_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      onFail: WARN
+      not:
+        tableExists:
+          tableName: books
+    changes:
+    - tagDatabase:
+        tag: v1.2
+    - createTable:
+        tableName: books
+        columns:
+        - column:
+            name: id
+            type: CHAR(36)
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: name
+            type: VARCHAR(20)
+            constraints:
+              nullable: false
+              unique: true
+              uniqueConstraintName: UC_groups_name
+        - column:
+            name: price
+            type: FLOAT
+            constraints:
+              nullable: false
+        - column:
+            name: category_id
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              referencedTableName: categories
+              referencedColumnNames: id
+              foreignKeyName: FK_books_categories_id
+        - column:
+            name: description
+            type: TEXT
+            constraints:
+              nullable: false
+        - column:
+            name: creation_date
+            type: TIMESTAMP
+            constraints:
+              nullable: false
+    rollback:
+    - dropTable:
+        tableName: books
+
+- changeSet:
+    id: 13_02_2018_4_add_authors_have_books_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      onFail: WARN
+      not:
+        tableExists:
+          tableName: authors_have_books
+    changes:
+    - tagDatabase:
+        tag: v1.3
+    - createTable:
+        tableName: authors_have_books
+        columns:
+        - column:
+            name: author_id
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              referencedTableName: authors
+              referencedColumnNames: id
+              foreignKeyName: FK_authors_have_books_authors
+        - column:
+            name: book_id
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              referencedTableName: books
+              referencedColumnNames: id
+              foreignKeyName: FK_authors_have_books_books
+    - addUniqueConstraint:
+        tableName: authors_have_books
+        columnNames: author_id, book_id
+        constraintName: UC_authors_have_books_author_id_book_id
+    rollback:
+    - dropTable:
+        tableName: authors_have_books
+
+- changeSet:
+    id: 11_09_2018_5_add_users_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      onFail: WARN
+      not:
+        tableExists:
+          tableName: users
+    changes:
+    - tagDatabase:
+        tag: v1.5
+    - createTable:
+        tableName: users
+        columns:
+        - column:
+            name: id
+            type: CHAR(36)
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: password
+            type: CHAR(65)
+            constraints:
+              nullable: false
+        - column:
+            name: first_name
+            type: VARCHAR(20)
+            constraints:
+              nullable: false
+        - column:
+            name: last_name
+            type: VARCHAR(20)
+            constraints:
+              nullable: false
+        - column:
+            name: email
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              unique: true
+              uniqueConstraintName: UC_user_email
+        - column:
+            name: role
+            type: ENUM('CLIENT', 'ADMIN')
+            constraints:
+              nullable: false
+        - column:
+            name: address
+            type: TEXT
+            constraints:
+              nullable: false
+        - column:
+            name: phone
+            type: CHAR(36)
+    rollback:
+    - dropTable:
+        tableName: users
+- changeSet:
+    id: 11_09_2018_6_add_orders_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      onFail: WARN
+      not:
+        tableExists:
+          tableName: orders
+    changes:
+    - tagDatabase:
+        tag: v1.6
+    - createTable:
+        tableName: orders
+        columns:
+        - column:
+            name: id
+            type: CHAR(36)
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: status
+            type: ENUM('NEW','COMPLETED','REJECTED')
+            constraints:
+              nullable: false
+        - column:
+            name: creation_date
+            type: TIMESTAMP
+            constraints:
+              nullable: false
+        - column:
+            name: user_id
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              referencedTableName: users
+              referencedColumnNames: id
+              foreignKeyName: FK_user_order_user_id
+    rollback:
+    - dropTable:
+        tableName: orders
+- changeSet:
+    id: 11_09_2018_1_add_orders_have_books_table
+    author: oleksii.hovderchak@nure.ua
+    preConditions:
+      not:
+        tableExists:
+          tableName: orders_have_books
+    changes:
+    - tagDatabase:
+        tag: v1.7
+    - createTable:
+        tableName: orders_have_books
+        columns:
+        - column:
+            name: order_id
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              referencedTableName: orders
+              referencedColumnNames: id
+              foreignKeyName: FK_orders_have_books_orders
+        - column:
+            name: book_id
+            type: CHAR(36)
+            constraints:
+              nullable: false
+              referencedTableName: books
+              referencedColumnNames: id
+              foreignKeyName: FK_orders_have_books_books
+        - column:
+            name: count
+            type: INT(11)
+            constraints:
+              nullable: false
+        - column:
+            name: price
+            type: FLOAT
+            constraints:
+              nullable: false
+        - addUniqueConstraint:
+            tableName: orders_have_books
+            columnNames: order_id, book_id
+            constraintName: UC_orders_have_books_order_id_book_id
+    rollback:
+    - dropTable:
+        tableName: orders_have_books
