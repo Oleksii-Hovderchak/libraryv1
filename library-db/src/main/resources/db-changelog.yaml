@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db-changelog/version/library-v1.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: db-changelog/data-provision/db-data-provision.yaml
+      relativeToChangelogFile: true

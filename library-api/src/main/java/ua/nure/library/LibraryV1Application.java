@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LibraryV1Application {
     /**
      * Runs the application
-     * @param args
+     * @param args args
      */
     public static void main(String[] args) {
         SpringApplication.run(LibraryV1Application.class, args);
