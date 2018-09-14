@@ -4,4 +4,3 @@ include 'library-domain'
 include 'library-dto'
 include 'library-persistence'
 include 'library-service'
-

@@ -1,13 +1,13 @@
-id,name,category_id,description,creation_date
-75973004-bc48-434f-8b16-f12e55525684,Hitman: Враг внутри
-60bbcee7-cb3c-4f1d-981e-ddcfb7471a0a,Рэмбо. Первая кровь
-a76e1f7e-a330-4f51-aef8-13f263521714,Белая вода
-41871c6f-6aed-47be-80ed-a4c1ac13588f,Жених ее подруги
-a1a964b3-d08a-405e-a687-f7a40cf21d63,Когда любовь ждет
-8e2eeda5-cfcb-4eb0-a511-e9e9cc1f6a8c,Битва желаний
-4a6c11ed-7039-4bc4-b8ff-4dc69c90dc57,Пятнадцатилетний капитан
-0fdfd32b-4e28-41f1-9637-253e960f4c55,Дети капитана Гранта
-7e5bebfc-4ed5-4a8d-99ca-441c8073085c,Приключения капитана Врунгеля
-4dc20f22-a8ed-4e0b-8767-3ece149ebc23,Яд-сказал Кот
-48f5a914-83a3-49d6-bacc-a69726839f30,Ромео и Джульетта
-4be4496b-9387-4ab3-8309-bcdeaba3e0d9,Сделка с Дьяволом
+id,name,price,category_id,description,creation_date
+75973004-bc48-434f-8b16-f12e55525684,Hitman: Enemy Inside,5,09c40088-c962-45ff-92d6-160f4d8f1436,book_1,'2002-12-1 10:07:55'
+60bbcee7-cb3c-4f1d-981e-ddcfb7471a0a,Rambo. First Blood,4,09c40088-c962-45ff-92d6-160f4d8f1436,book_2,'2003-11-2 10:07:55'
+a76e1f7e-a330-4f51-aef8-13f263521714,White Water,3,09c40088-c962-45ff-92d6-160f4d8f1436,book_3,'2015-9-4 10:07:55'
+41871c6f-6aed-47be-80ed-a4c1ac13588f,Husband Of Her Friend,4,bfaf1d64-658c-4c2a-908f-1d797ab7be7b,book_5,'2015-10-3 10:07:55'
+a1a964b3-d08a-405e-a687-f7a40cf21d63,When The Love waits,8,bfaf1d64-658c-4c2a-908f-1d797ab7be7b,book_6,'2005-8-5 10:07:55'
+8e2eeda5-cfcb-4eb0-a511-e9e9cc1f6a8c,Wishes Fight,3,bfaf1d64-658c-4c2a-908f-1d797ab7be7b,book_7,'2005-7-6 10:07:55'
+4a6c11ed-7039-4bc4-b8ff-4dc69c90dc57,A Captain At Fifteen,8,0279f340-00c7-467b-ae73-304f78300ff6,book_8,'2009-6-7 10:07:55'
+0fdfd32b-4e28-41f1-9637-253e960f4c55,The Children of Captain Grant,4,0279f340-00c7-467b-ae73-304f78300ff6,book_9,'2008-5-8 10:07:55'
+7e5bebfc-4ed5-4a8d-99ca-441c8073085c,Adventures of Captain Wrongel,6,0279f340-00c7-467b-ae73-304f78300ff6,book_10,'2007-6-9 10:07:55'
+4dc20f22-a8ed-4e0b-8767-3ece149ebc23,"Poison!" Said The Cat,3,25cf329d-5282-47da-a228-62fced864e53,book_11,'2008-5-9 10:07:55'
+48f5a914-83a3-49d6-bacc-a69726839f30,Romeo and Juliet,7,3a219b3b-1555-4122-921c-2197114ac072,book_12,'2009-6-8 10:07:55'
+4be4496b-9387-4ab3-8309-bcdeaba3e0d9,Deal With Devil,4,f4856a62-0075-447c-b525-ac2b5d7c5cab,book_13,'2012-2-21 10:07:55'

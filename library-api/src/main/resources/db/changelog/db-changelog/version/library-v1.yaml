@@ -21,18 +21,21 @@ databaseChangeLog:
               nullable: false
         - column:
             name: first_name
-            type: VARCHAR(20)
+            type: VARCHAR(65)
             constraints:
               nullable: false
         - column:
             name: last_name
-            type: VARCHAR(20)
+            type: VARCHAR(65)
             constraints:
               nullable: false
     - addUniqueConstraint:
         tableName: authors
         columnNames: first_name, last_name
         constraintName: UC_authors_first_name_last_name
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: authors
@@ -59,11 +62,14 @@ databaseChangeLog:
               nullable: false
         - column:
             name: name
-            type: VARCHAR(20)
+            type: VARCHAR(65)
             constraints:
               nullable: false
               unique: true
               uniqueConstraintName: UC_categories_name
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: categories
@@ -90,7 +96,7 @@ databaseChangeLog:
               nullable: false
         - column:
             name: name
-            type: VARCHAR(20)
+            type: VARCHAR(65)
             constraints:
               nullable: false
               unique: true
@@ -118,6 +124,9 @@ databaseChangeLog:
             type: TIMESTAMP
             constraints:
               nullable: false
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: books
@@ -156,6 +165,9 @@ databaseChangeLog:
         tableName: authors_have_books
         columnNames: author_id, book_id
         constraintName: UC_authors_have_books_author_id_book_id
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: authors_have_books
@@ -187,12 +199,12 @@ databaseChangeLog:
               nullable: false
         - column:
             name: first_name
-            type: VARCHAR(20)
+            type: VARCHAR(65)
             constraints:
               nullable: false
         - column:
             name: last_name
-            type: VARCHAR(20)
+            type: VARCHAR(65)
             constraints:
               nullable: false
         - column:
@@ -215,6 +227,9 @@ databaseChangeLog:
         - column:
             name: phone
             type: CHAR(36)
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: users
@@ -256,6 +271,9 @@ databaseChangeLog:
               referencedTableName: users
               referencedColumnNames: id
               foreignKeyName: FK_user_order_user_id
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: orders
@@ -302,6 +320,9 @@ databaseChangeLog:
             tableName: orders_have_books
             columnNames: order_id, book_id
             constraintName: UC_orders_have_books_order_id_book_id
+    - modifySql:
+        dbms: mysql
+        value: ENGINE=INNODB CHARSET=UTF8 COLLATE utf8_unicode_ci
     rollback:
     - dropTable:
         tableName: orders_have_books
