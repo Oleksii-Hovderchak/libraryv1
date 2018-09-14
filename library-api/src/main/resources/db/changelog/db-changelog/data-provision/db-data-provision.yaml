@@ -13,11 +13,6 @@ databaseChangeLog:
               file: data/authors.csv
               tableName: authors
               primaryKey: pk_id
-          - loadUpdateData:
-              file: data/authors.csv
-              tableName: authors
-              quotchar: '"'
-              primaryKey: pk_id
   - changeSet:
         id: 02_load_category_data
         author: oleksii.hovderchak@nure.ua
@@ -28,7 +23,7 @@ databaseChangeLog:
         runOnChange: true
         changes:
           - loadUpdateData:
-              file: data/catigories.csv
+              file: data/categories.csv
               tableName: categories
               primaryKey: pk_id
   - changeSet:

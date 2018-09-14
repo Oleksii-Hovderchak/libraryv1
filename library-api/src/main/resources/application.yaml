@@ -9,6 +9,9 @@ spring:
     username: root
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.jdbc.Driver
+    connectionProperties:
+      useUnicode: true
+      characterEncoding: utf-8
   jpa:
     show-sql: false
     properties:
@@ -22,5 +25,5 @@ spring:
   http.multipart:
     max-request-size: ${MAX_HTTP_REQUEST_SIZE:20MB}
     max-file-size: ${MAX_HTTP_FILE_SIZE:20MB}
-liquibase:
-  change-log: classpath:db-changelog.yaml
+#liquibase:
+#  change-log: classpath:db-changelog.yaml

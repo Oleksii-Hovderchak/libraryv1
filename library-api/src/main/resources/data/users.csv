@@ -1,0 +1,4 @@
+id,password,first_name,last_name,email,role,address,phone
+f965ab7f-acae-43b6-a164-bcab6f401177,$2a$10$Zetk2QW1LNRrlrfwlDJ1OuHxtjwahDzNGBrOlh/1o.VVYQj3skUsC,Oleksii,Hovderchak,oleksii.hovderchak@nure.ua,ADMIN,my_admin_address,+380123432123
+64f7f54e-d55b-4ab9-b084-6dc8d0dd2f9e,$2a$10$bG7FD8MxH0FlvRt2ad1.RuYYy0t/ao80PJ4CUgS7IN7CfzWe0/b5i,Roman,Tkachenko,roman.tkachenko@nure.ua,CLIENT,roman_address,+380876456314
+c98357b1-d0b1-430e-88ff-e1a9fb3847ae,$2a$10$W1moLkh5ld72M34jHHd1DOgkbGJztfQeHO20Uir9cnD9005U6Rt7e,Dmytro,Tkachuk,dmytro.tkachuk@nure.ua,CLIENT,dmytro_address,+380765385421

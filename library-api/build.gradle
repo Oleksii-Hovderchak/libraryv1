@@ -8,7 +8,7 @@ buildscript {
         classpath "mysql:mysql-connector-java:${mysqlConnectorVersion}"
         classpath("org.liquibase:liquibase-core:${liquibaseVersion}")
         classpath("org.liquibase:liquibase-gradle-plugin:${liquibasePluginVersion}") {
-            exclude(module: 'liquibase-core')
+//            exclude(module: 'liquibase-core')
         }
         classpath("org.yaml:snakeyaml:${snakeyamlVersion}")
     }
@@ -77,17 +77,15 @@ if ("$addApiDocs".toBoolean()) {
     }
 }
 
+def changeLog = "$projectDir/library-api/src/main/resources/db/changelog/db.changelog-master.yaml"
+
 liquibase {
     activities {
         main {
-            File propsFile = project.file('src/main/resources/database.properties')
-            Properties properties = new Properties()
-            properties.load(new FileInputStream(propsFile))
-
-            changeLogFile properties['database.changes.main']
-            url properties['database.url']
-            username properties['database.username']
-            password properties['database.password']
+            changeLogFile changeLog
+            url 'jdbc:mysql://localhost:3306/libraryv1?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true'
+            username 'root'
+            password 'root'
         }
     }
 }
