@@ -15,8 +15,8 @@ public class MainPageRest {
      *
      * @return hello
      */
-    @GetMapping("/")
+    @GetMapping("")
     public String printWelcome() {
-        return "hello";
+        return "{\"text\": \"Dima Pidor\"}";
     }
 }

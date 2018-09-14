@@ -1,16 +1,9 @@
-plugins {
-    id 'java'
-}
-
-group 'library'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile project(':library-persistence')
+
+    compile 'org.springframework.security:spring-security-core'
+    compile('org.springframework.security.oauth:spring-security-oauth2')
+    compile('org.springframework.security:spring-security-jwt')
+
+    testCompile group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 }
