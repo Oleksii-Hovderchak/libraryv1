@@ -4,10 +4,10 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Table(name = "users")
+@Entity
 public class UserEntity extends AbstractEntity {
 
     @Column(name = "password")
@@ -23,6 +23,7 @@ public class UserEntity extends AbstractEntity {
     private String email;
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @Column(name = "address")

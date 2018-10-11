@@ -1,23 +1,39 @@
 package ua.nure.library.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import ua.nure.library.domain.UserEntity;
-import ua.nure.library.persistence.UserRepository;
+import ua.nure.library.domain.UserPrincipal;
+import ua.nure.library.domain.UserRole;
 
-import java.util.List;
+import java.util.Optional;
 
-@Service
-public class UserService {
+public interface UserService {
 
-    private UserRepository userRepository;
+    /**
+     * Gets all users
+     *
+     * @param pageable                   for implementing pagination
+     * @param firstNameOrLastNameOrEmail is a string for search. Can be firstName, lastName oe email
+     * @param userRole                   role of user
+     * @param userPhone                  phone of user
+     * @param userAddress                address of user
+     * @return page of {@link UserEntity}
+     */
+    Page<UserEntity> getAllUsers(Pageable pageable, String firstNameOrLastNameOrEmail, UserRole userRole, String userPhone, String userAddress);
 
-    @Autowired
-    public UserService(UserRepository userRepository1) {
-        this.userRepository = userRepository1;
-    }
+    /**
+     * Gets current user
+     *
+     * @return {@link UserPrincipal}
+     */
+    UserPrincipal getCurrentUser();
 
-    public List<UserEntity> getAllUsers() {
-        return userRepository.findAll();
-    }
+    /**
+     * Gets user by email
+     *
+     * @param userEmail string param user email
+     * @return optional {@link UserEntity}
+     */
+    Optional<UserEntity> findByEmail(String userEmail);
 }
